@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
 
     let authObs : Observable<AuthResponseData>;
 
-     this.isLoading = true;
+    this.isLoading = true;
     if(this.isLoginMode){
       authObs = this.authServise.login(email,password);
     }else{
