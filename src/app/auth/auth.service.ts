@@ -23,6 +23,7 @@ export class AuthService{
 
   constructor(private http:HttpClient,private router:Router) { }
   
+  //sign up method
   signup(email:string,password:string){
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCZTS7RmkCa5QFz36wJH5BLdgi_nlg8AWs',{
       email:email,
@@ -37,6 +38,8 @@ export class AuthService{
     );
   }
 
+
+  //log in method
   login(email:string,password:string){
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCZTS7RmkCa5QFz36wJH5BLdgi_nlg8AWs',{
       email:email,
@@ -50,11 +53,15 @@ export class AuthService{
     );
   }
 
+
+  //log out method
   logout(){
     this.user.next(null);
     this.router.navigate(['/auth']);
   }
 
+
+  //handle authentication
   private handleAuthentication(email:string,userId:string,token:string,expiresIn:number){
     const expirationDate = new Date(
       new Date().getTime() + expiresIn * 1000
@@ -68,6 +75,8 @@ export class AuthService{
     this.user.next(user);
   }
 
+
+  //handle error
   private handleError(errorRes: HttpErrorResponse){
     let errorMessage = 'An Unknown Error occurred!';
         if(!errorRes.error || !errorRes.error.error){
