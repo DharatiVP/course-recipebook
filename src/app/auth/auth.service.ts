@@ -63,9 +63,7 @@ export class AuthService{
 
   //handle authentication
   private handleAuthentication(email:string,userId:string,token:string,expiresIn:number){
-    const expirationDate = new Date(
-      new Date().getTime() + expiresIn * 1000
-    );
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(
       email,
       userId,
