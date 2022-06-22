@@ -40,7 +40,7 @@ recipeForm : FormGroup;
       this.onCancel();
   }
 
-  getControls() {
+  get ingredientsControls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
   }
 
