@@ -7,6 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { User } from './user.model';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from './store/auth.actions';
+import { environment } from 'src/environments/environment';
 
 export interface AuthResponseData{
   idToken :	string;
@@ -23,13 +24,13 @@ export interface AuthResponseData{
 export class AuthService{
 
   //user = new BehaviorSubject<User>(null);
-  tokenExpirationTimer:any;
+  private tokenExpirationTimer:any;
 
   constructor(private http:HttpClient,private router:Router,private store:Store<fromApp.AppState>) { }
   
   //sign up method
   signup(email:string,password:string){
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCZTS7RmkCa5QFz36wJH5BLdgi_nlg8AWs',{
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,{
       email:email,
       password:password,
       returnSecureToken: true
@@ -45,7 +46,7 @@ export class AuthService{
 
   //log in method
   login(email:string,password:string){
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCZTS7RmkCa5QFz36wJH5BLdgi_nlg8AWs',{
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey,{
       email:email,
       password:password,
       returnSecureToken: true
