@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Actions , Effect, ofType } from '@ngrx/effects';
+import { Actions , createEffect, Effect, ofType } from '@ngrx/effects';
 import { switchMap, catchError, map, tap } from 'rxjs/operators';
 import * as AuthActions from "./auth.actions";
-import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
@@ -18,14 +17,14 @@ export interface AuthResponseData{
 
   @Injectable()
   export class AuthEffects {
-    @Effect()
-    authLogin = this.actions$.pipe(
+  
+    authLogin$ = createEffect(() => { 
+      return  this.actions$.pipe(
       ofType(AuthActions.LOGIN_START),
       switchMap((authData: AuthActions.LoginStart) => {
         return this.http
           .post<AuthResponseData>(
-            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-              environment.firebaseAPIKey,
+            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCZTS7RmkCa5QFz36wJH5BLdgi_nlg8AWs',
             {
               email: authData.payload.email,
               password: authData.payload.password,
@@ -67,6 +66,7 @@ export interface AuthResponseData{
             })
           );
       })
+      )}
     );
   
     @Effect({ dispatch: false })
