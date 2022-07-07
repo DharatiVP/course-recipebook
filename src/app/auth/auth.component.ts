@@ -51,9 +51,9 @@ export class AuthComponent implements OnDestroy{
     const email = form.value.email;
     const password = form.value.password;
 
-    let authObs: Observable<AuthResponseData>;
+    //let authObs: Observable<AuthResponseData>;
 
-    this.isLoading = true;
+    //this.isLoading = true;
 
     if (this.isLoginMode) {
       // authObs = this.authService.login(email, password);
@@ -61,7 +61,10 @@ export class AuthComponent implements OnDestroy{
         new AuthActions.LoginStart({ email: email, password: password })
       );
     } else {
-      authObs = this.authService.signup(email, password);
+      //authObs = this.authService.signup(email, password);
+      this.store.dispatch(
+        new AuthActions.SignUpStart({email:email,password:password})
+      );
     }
 
     // authObs.subscribe(
