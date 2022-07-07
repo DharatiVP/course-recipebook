@@ -13,9 +13,11 @@ const initialState: State = {
   loading: false
 };
 
-export function authReducer(state = initialState,action:AuthActions.AuthActions) {
-
-  switch(action.type){
+export function authReducer(
+  state = initialState,
+  action: AuthActions.AuthActions
+) {
+  switch (action.type) {
     case AuthActions.LOGIN:
       const user = new User(
         action.payload.email,
@@ -34,7 +36,7 @@ export function authReducer(state = initialState,action:AuthActions.AuthActions)
         ...state,
         user: null
       };
-      case AuthActions.LOGIN_START:
+    case AuthActions.LOGIN_START:
       return {
         ...state,
         authError: null,
@@ -47,8 +49,7 @@ export function authReducer(state = initialState,action:AuthActions.AuthActions)
         authError: action.payload,
         loading: false
       };
-    
-    default : 
+    default:
       return state;
   }
 }
