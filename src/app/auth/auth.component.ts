@@ -1,8 +1,8 @@
 import { Component, ComponentFactoryResolver, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AuthService, AuthResponseData } from './auth.service';
-import { Observable, Subscription } from 'rxjs';
+import { AuthService } from './auth.service';
+import { Subscription } from 'rxjs';
 import { AlertComponent } from '../shared/alert/alert/alert.component';
 import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 import { Store } from '@ngrx/store';
