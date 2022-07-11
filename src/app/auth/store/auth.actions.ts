@@ -9,7 +9,7 @@ export const AUTO_LOGIN  = '[Auth] Auto Login';
 export const LOGOUT = '[Auth] Logout';
 
 
-export class Login implements Action {
+export class AuthenticateSuccess implements Action {
   readonly type = AUTHENTICATE_SUCCESS;
 
   constructor(
@@ -18,6 +18,7 @@ export class Login implements Action {
       userId: string;
       token: string;
       expirationDate: Date;
+      redirect:boolean;
     }
   ) {}
 }
@@ -52,4 +53,4 @@ export class AutoLogin implements Action{
   readonly type = AUTO_LOGIN;
 }
 
-export type AuthActions = Login | Logout | LoginStart | LoginFail | SignUpStart | ClearError | AutoLogin;
+export type AuthActions = AuthenticateSuccess | Logout | LoginStart | LoginFail | SignUpStart | ClearError | AutoLogin;

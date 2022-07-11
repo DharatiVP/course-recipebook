@@ -28,14 +28,6 @@ import { SharedModule } from "../shared/shared.module";
         ReactiveFormsModule,
         RecipesRoutingModule,
         SharedModule
-    ],
-    exports:[
-        RecipesComponent,
-        RecipeDetailComponent,
-        RecipeListComponent,
-        RecipeItemComponent,
-        RecipeStartComponent,
-        RecipeEditComponent
     ]
 })
 export class RecipesModule{}
