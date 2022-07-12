@@ -15,6 +15,7 @@ import { AuthEffects } from './auth/store/auth.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { RecipeEffects } from './recipes/store/recipe.effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RecipeEffects } from './recipes/store/recipe.effects';
     StoreModule.forRoot(fromApp.appReducer),
     HttpClientModule,
     CoreModule,
+    BrowserAnimationsModule,
     SharedModule,
     EffectsModule.forRoot([AuthEffects,RecipeEffects]),
     StoreDevtoolsModule.instrument({ logOnly : environment.production})
